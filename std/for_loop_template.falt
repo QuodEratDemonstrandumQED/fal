@@ -1,0 +1,33 @@
+<<template code>>
+#USE iterator_template.falt
+=> Structure {
+	%for @code(init) -> @code_cond(cond) <-> @code(iter) <-> @code(loop)
+} -> Execution {
+	@scope(loop_scope);
+	$new_scope(loop_scope);
+	@scope(loop_subscope);
+	$run(init, loop_scope);
+	$new_scope(loop_subscope, loop_scope);
+	%if $run(cond, loop_scope) -> %if !$run(loop, loop_subscope) || !$run(iter, loop_scope) -> {
+		$delete_scope(loop_subscope);
+		$set_pc(-3);
+	}
+	$delete_scope(loop_scope);
+}
+
+=> Structure {
+	%for @code_iter(iter) <-> @code(loop)
+} -> Execution {
+	@scope(loop_scope);
+	$new_scope(loop_scope, $current_scope);
+	@scope(loop_subscope);
+	@iterator it = $run(iter, loop_scope);
+	%if it.index < it.target.size() -> {
+		$new_scope(loop_subscope, loop_scope);
+		%if !$run(loop, loop_subscope()) -> {
+			it++;
+			$delete_scope(loop_subscope);
+			$set_pc(-5);
+		}
+	}
+}

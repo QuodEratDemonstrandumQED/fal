@@ -1,0 +1,25 @@
+#use std/
+
+@function(@void)(main()) {
+	%for @int(i); -> i < 3 <-> i++; <-> {
+		%out i, '\n';
+	}
+}#use std/
+
+@function(@void)(main()) {
+	%for @int(i); -> i < 3 <-> i++; <-> {
+		%out i, '\n';
+	}
+}#use std/
+
+@function(@void)(main()) {
+	%for @int(i); -> i < 3 <-> i++; <-> {
+		%out i, '\n';
+	}
+}#use std/
+
+@function(@void)(main()) {
+	%for @int(i); -> i < 3 <-> i++; <-> {
+		%out i, '\n';
+	}
+}

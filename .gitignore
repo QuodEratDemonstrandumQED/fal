@@ -1,0 +1,15 @@
+*.o
+*.so
+*.dll
+*.a
+*.lib
+*.exe
+
+.ccls-cache/
+.pythonlibs/
+.agents/
+.upm/
+.idea/
+build/
+.replit
+replit.nix

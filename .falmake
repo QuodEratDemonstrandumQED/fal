@@ -1,0 +1,7 @@
+target(main => (@falmake_target) ~ {
+	.entry = "main.arg";
+	.build_dir = "falbuild/";
+	.create_build_dir = true;
+	.cwd = "/../";
+	.copy_dirs = [];
+});

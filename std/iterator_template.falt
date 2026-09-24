@@ -1,0 +1,17 @@
+<<template type(@iterator)>>
+=> Structure {
+	@code_vardef(var) : @code_var(tgt)
+} -> Layout {
+	@int(index);
+	@type(tgt)(target);
+	@ptr(var)(variable)
+	@function(@operator_return_value)(operator++(@iterator a))
+} -> Execution {
+	.index = 0;
+	.target = tgt;
+	.operator++ => {
+		a.index++;
+		a.variable = a.target[a.index];
+		return(@operator_return_value());
+	};
+}
