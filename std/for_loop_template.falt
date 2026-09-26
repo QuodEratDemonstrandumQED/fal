@@ -8,9 +8,11 @@
 	@scope(loop_subscope);
 	$run(init, loop_scope);
 	$new_scope(loop_subscope, loop_scope);
+	@checkpoint(for_loop_checkpoint);
+	$new_checkpoint(for_loop_checkpoint);
 	%if $run(cond, loop_scope) -> %if !$run(loop, loop_subscope) || !$run(iter, loop_scope) -> {
 		$delete_scope(loop_subscope);
-		$set_pc(-3);
+		$set_pc(for_loop_checkpoint);
 	}
 	$delete_scope(loop_scope);
 }
@@ -22,12 +24,14 @@
 	$new_scope(loop_scope, $current_scope);
 	@scope(loop_subscope);
 	@iterator it = $run(iter, loop_scope);
+	@checkpoint(for_loop_checkpoint);
+	$new_checkpoint(for_loop_checkpoint);
 	%if it.index < it.target.size() -> {
 		$new_scope(loop_subscope, loop_scope);
 		%if !$run(loop, loop_subscope()) -> {
 			it++;
 			$delete_scope(loop_subscope);
-			$set_pc(-5);
+			$set_pc(for_loop_checkpoint);
 		}
 	}
 }

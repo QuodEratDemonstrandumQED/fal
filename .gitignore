@@ -13,3 +13,5 @@
 build/
 .replit
 replit.nix
+
+cmake-build-debug/
