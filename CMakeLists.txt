@@ -4,4 +4,5 @@ project(Project)
 set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_CXX_STANDARD_REQUIRED False)
 
-add_executable(Project main.cpp)
+add_executable(Compiler compiler.cpp)
+add_executable(Interpreter interpreter.cpp)
